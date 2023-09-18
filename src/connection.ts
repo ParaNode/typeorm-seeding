@@ -71,7 +71,7 @@ export const getConnectionOptions = async (): Promise<ConnectionOptions> => {
       configName: configureOption.configName,
     })
     let o = (await reader.all() as unknown as Array<{dataSource: DataSource, baseDirectory: string}>)
-    let options = o.map(option => option.dataSource || option) as Array<DataSource>
+    let options = o.map(option => option.dataSource || option) as Array<DataSource | ConnectionOptions>
 
     if (connection !== undefined && connection !== '') {
       const filteredOptions = options.filter((o) => o.name === connection)
@@ -86,7 +86,8 @@ export const getConnectionOptions = async (): Promise<ConnectionOptions> => {
       }
     }
     if (options.length === 1) {
-      const option = options[0].options
+      const option = (options[0] as DataSource)?.options ?? options[0] as ConnectionOptions;
+
       if (!option.factories) {
         option.factories = [process.env.TYPEORM_SEEDING_FACTORIES || 'src/database/factories/**/*{.ts,.js}']
       }
