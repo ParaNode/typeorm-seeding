@@ -1,7 +1,7 @@
 {
   "name": "@paranode/typeorm-seeding",
   "private": true,
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "🌱 A delightful way to seed test data into your database.",
   "license": "MIT",
   "author": "Sayed Mahmoud <sayed@paranode.dev> (https://github.com/sayedmahmoud266) ,Gery Hirschfeld <gery.hirschfeld@w3tec.ch> (https://github.com/hirsch88)",
